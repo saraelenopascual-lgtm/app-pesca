@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Nueva captura</h2>
+
+  <form method="post" enctype="multipart/form-data" class="form">
+    <div class="form-row">
+      <label>Especie</label>
+      <select name="species_id" required>
+        <option value="">(elige una especie)</option>
+        {% for sp in species %}
+          <option value="{{ sp.id }}">{{ sp.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Fecha</label>
+      <input type="datetime-local" name="date" />
+    </div>
+
+    <div class="form-row">
+      <label>Ubicación</label>
+      <input type="text" name="location" placeholder="Ej: Cala X" />
+    </div>
+
+    <div class="form-row">
+      <label>Longitud (cm)</label>
+      <input type="number" step="0.1" name="length_cm" />
+    </div>
+
+    <div class="form-row">
+      <label>Peso (kg)</label>
+      <input type="number" step="0.01" name="weight_kg" />
+    </div>
+
+    <div class="form-row">
+      <label>Cebo</label>
+      <input type="text" name="bait" />
+    </div>
+
+    <div class="form-row">
+      <label>Anzuelo</label>
+      <input type="text" name="hook" />
+    </div>
+
+    <div class="form-row">
+      <label>Foto/Video</label>
+      <input type="file" name="media" accept="image/*,video/*" />
+    </div>
+
+    <div class="form-row">
+      <label>Notas</label>
+      <textarea name="notes" rows="4"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Guardar captura</button>
+    </div>
+  </form>
+{% endblock %}

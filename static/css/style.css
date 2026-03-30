@@ -1,0 +1,229 @@
+/* Estilos básicos para Capturo */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  background: #f6f8fb;
+  color: #1f2937;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.site-header {
+  background: #0b3c5d;
+  color: white;
+  padding: 1rem 0;
+}
+
+.site-header h1 {
+  margin: 0;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.main-nav a {
+  padding: 0.45rem 0.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.main-nav a:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.home .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.form {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.form-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.card-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #0b3c5d;
+  color: white;
+}
+
+.btn-secondary {
+  background: rgba(11, 60, 93, 0.12);
+  color: #0b3c5d;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.flash-messages {
+  margin-bottom: 1rem;
+}
+
+.flash {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.flash-success {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.flash-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.site-footer {
+  padding: 1.2rem 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.capturopedia-layout {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 250px;
+  min-width: 220px;
+}
+
+.sidebar .card {
+  position: sticky;
+  top: 1rem;
+}
+
+.species-grid {
+  flex: 1;
+}
+
+.species-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.species-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.species-image {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.species-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.species-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

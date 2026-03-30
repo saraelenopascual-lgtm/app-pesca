@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Registrarse</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form method="post" class="form">
+        <div class="form-row">
+          <label>Nombre</label>
+          <input type="text" name="name" />
+        </div>
+
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+
+        <div class="form-row">
+          <label>Contraseña</label>
+          <input type="password" name="password" required />
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary">Crear cuenta</button>
+          <a class="btn btn-secondary" href="{{ url_for('main.login') }}">Ya tengo cuenta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

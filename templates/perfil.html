@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Mi perfil</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form method="post" class="form">
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" value="{{ current_user.email }}" disabled />
+        </div>
+
+        <div class="form-row">
+          <label>Nombre</label>
+          <input type="text" name="name" value="{{ current_user.name or '' }}" />
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary">Guardar</button>
+          <a class="btn btn-secondary" href="{{ url_for('main.index') }}">Volver</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

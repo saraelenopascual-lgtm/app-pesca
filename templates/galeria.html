@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Galería</h2>
+
+  {% if captures %}
+    <div class="gallery">
+      {% for c in captures %}
+        <div class="card">
+          {% if c.media_path %}
+            {% if c.media_path.endswith('.mp4') or c.media_path.endswith('.mov') %}
+              <video controls src="{{ url_for('static', filename=c.media_path) }}" />
+            {% else %}
+              <img src="{{ url_for('static', filename=c.media_path) }}" alt="Foto captura" />
+            {% endif %}
+          {% endif %}
+          <div class="card-body">
+            <p><strong>Especie:</strong> {{ c.species.name if c.species else '—' }}</p>
+            <p><strong>Fecha:</strong> {{ c.date.strftime('%Y-%m-%d %H:%M') if c.date else '—' }}</p>
+            <p><strong>Longitud:</strong> {{ c.length_cm or '—' }} cm</p>
+            <p><strong>Peso:</strong> {{ c.weight_kg or '—' }} kg</p>
+            <p><strong>Cebo:</strong> {{ c.bait or '—' }}</p>
+            <p><strong>Anzuelo:</strong> {{ c.hook or '—' }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No hay capturas registradas todavía.</p>
+  {% endif %}
+{% endblock %}

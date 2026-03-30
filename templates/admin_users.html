@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Administración de usuarios</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Admin</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.email }}</td>
+          <td>{{ user.name or '-' }}</td>
+          <td>{{ 'Sí' if user.is_admin else 'No' }}</td>
+          <td>
+            {% if user != current_user %}
+              <form style="display:inline;" method="post">
+                <input type="hidden" name="user_id" value="{{ user.id }}" />
+                <input type="hidden" name="action" value="toggle_admin" />
+                <button type="submit">{{ 'Revocar admin' if user.is_admin else 'Otorgar admin' }}</button>
+              </form>
+              <form style="display:inline;" method="post" onsubmit="return confirm('Eliminar usuario?');">
+                <input type="hidden" name="user_id" value="{{ user.id }}" />
+                <input type="hidden" name="action" value="delete_user" />
+                <button type="submit">Eliminar</button>
+              </form>
+            {% else %}
+              <span>Mi usuario</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

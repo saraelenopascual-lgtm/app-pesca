@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Estadísticas</h2>
+
+  {% if captures %}
+    <p>Por ahora se muestran las capturas en forma de tabla. Más adelante se puede agregar gráfico.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Especie</th>
+          <th>Longitud</th>
+          <th>Peso</th>
+          <th>Cebo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in captures %}
+          <tr>
+            <td>{{ c.date.strftime('%Y-%m-%d') if c.date else '—' }}</td>
+            <td>{{ c.species.name if c.species else '—' }}</td>
+            <td>{{ c.length_cm or '—' }}</td>
+            <td>{{ c.weight_kg or '—' }}</td>
+            <td>{{ c.bait or '—' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay capturas registradas para mostrar estadísticas.</p>
+  {% endif %}
+{% endblock %}

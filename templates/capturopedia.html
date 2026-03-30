@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Capturopedia</h2>
+
+  {% if current_user.is_admin %}
+    <div class="admin-actions">
+      <a class="btn btn-primary" href="{{ url_for('main.admin_species_add') }}">Agregar nueva especie</a>
+    </div>
+  {% endif %}
+
+  <div class="capturopedia-layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-body">
+          <h3>Filtros</h3>
+          <form method="get" class="form">
+            <div class="form-row">
+              <label>Buscar por nombre</label>
+              <input type="text" name="q" value="{{ current_query or '' }}" placeholder="Ej: Dorado" />
+            </div>
+
+            <div class="form-row">
+              <label>Mostrar</label>
+              <select name="status">
+                <option value="all" {% if current_status == 'all' %}selected{% endif %}>Todas</option>
+                <option value="caught" {% if current_status == 'caught' %}selected{% endif %}>Pescadas</option>
+                <option value="not_caught" {% if current_status == 'not_caught' %}selected{% endif %}>No pescadas</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary">Aplicar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </aside>
+
+    <main class="species-grid">
+      {% if species %}
+        <div class="species-list">
+          {% for sp in species %}
+            <div class="card species-card">
+              {% if sp.image_url %}
+                <div class="species-image">
+                  <img src="{{ sp.image_url }}" alt="{{ sp.name }}" />
+                </div>
+              {% endif %}
+
+              <div class="card-body">
+                <h3>{{ sp.name }}</h3>
+                <p>{{ sp.description or 'Sin descripción' }}</p>
+
+                {% if sp.fishing_tips %}
+                  <p><strong>Consejos:</strong> {{ sp.fishing_tips }}</p>
+                {% endif %}
+
+                <p>
+                  Estado: <strong>{{ '✅ Pescada' if sp.is_caught else '❌ No pescada' }}</strong>
+                </p>
+
+                <div class="card-actions">
+                  <a class="btn btn-secondary" href="{{ url_for('main.capturopedia_toggle', species_id=sp.id) }}">
+                    Marcar como {{ 'no pescada' if sp.is_caught else 'pescada' }}
+                  </a>
+                  {% if current_user.is_admin %}
+                    <a class="btn btn-secondary" href="{{ url_for('main.capturopedia_edit', species_id=sp.id) }}">
+                      Editar
+                    </a>
+                    <form style="display:inline;" method="post" action="{{ url_for('main.admin_species_delete', species_id=sp.id) }}" onsubmit="return confirm('¿Eliminar especie?');">
+                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No hay especies cargadas aún.</p>
+      {% endif %}
+    </main>
+  </div>
+{% endblock %}

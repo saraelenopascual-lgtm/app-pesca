@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Iniciar sesión</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form method="post" class="form">
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+
+        <div class="form-row">
+          <label>Contraseña</label>
+          <input type="password" name="password" required />
+        </div>
+
+        <div class="form-row">
+          <label>
+            <input type="checkbox" name="remember" /> Recordarme
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary">Iniciar sesión</button>
+          <a class="btn btn-secondary" href="{{ url_for('main.register') }}">Registrarse</a>
+        </div>
+
+        <div class="form-actions" style="margin-top: 1rem;">
+          <a class="btn btn-link" href="{{ url_for('main.forgot_password') }}">¿Olvidaste tu contraseña?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Agregar nueva especie</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data" class="form">
+        <div class="form-row">
+          <label>Nombre</label>
+          <input type="text" name="name" required maxlength="120" />
+        </div>
+
+        <div class="form-row">
+          <label>Descripción</label>
+          <textarea name="description" rows="2"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>Imagen</label>
+          <input type="file" name="image_file" accept="image/*" />
+        </div>
+
+        <div class="form-row">
+          <label>Condiciones / consejos de pesca</label>
+          <textarea name="fishing_tips" rows="3"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary">Agregar especie</button>
+          <a class="btn btn-secondary" href="{{ url_for('main.capturopedia') }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

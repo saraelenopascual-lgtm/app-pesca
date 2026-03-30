@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Repuestos</h2>
+
+  <form method="post" class="form">
+    <div class="form-row">
+      <label>Nombre</label>
+      <input type="text" name="name" required />
+    </div>
+
+    <div class="form-row">
+      <label>Cantidad</label>
+      <input type="number" name="quantity" min="0" value="0" />
+    </div>
+
+    <div class="form-row checkbox-row">
+      <label>
+        <input type="checkbox" name="needed" />
+        Falta / Necesario
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>Notas</label>
+      <textarea name="notes" rows="3"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+
+  <section class="table-section">
+    <h3>Inventario</h3>
+    {% if parts %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Necesario</th>
+            <th>Notas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for part in parts %}
+            <tr>
+              <td>{{ part.name }}</td>
+              <td>{{ part.quantity }}</td>
+              <td>{{ '✅' if part.needed else '—' }}</td>
+              <td>{{ part.notes or '—' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No hay elementos registrados aún.</p>
+    {% endif %}
+  </section>
+{% endblock %}
